@@ -39,8 +39,28 @@ def test2():
     ax.set_zlabel('z')
     plt.show()
 
+def test3():
+    def f(x, y):
+        return x ** 2 + 2 * y ** 2
+
+    x = np.linspace(-15, 15, 300)
+    y = np.linspace(-15, 15, 300)
+
+    X, Y = np.meshgrid(x, y)
+    Z = f(X, Y)
+
+    fig = plt.figure()
+    ax = plt.axes(projection='3d')
+    ax.contour3D(X, Y, Z, 50, cmap='binary')
+    # ax.plot_wireframe(X, Y, Z, color='black')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_zlabel('z')
+    plt.show()    
+
 
 
 if __name__ == '__main__':
     # test1()
-    test2()
+    # test2()
+    test3()
