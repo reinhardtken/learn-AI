@@ -2,13 +2,15 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 
-# axis=0，的意思是x轴每个元素的其他维度求和平均
+
+# 在 Python 中，axis 参数用于指定操作的轴。在二维数组中，axis=0 表示沿着列的方向进行操作，axis=1 表示沿着行的方向进行操作。
+
 x = tf.constant([[1.0, 2.0], [3.0, 4.0]])
 y = tf.reduce_mean(x, axis=0)
 print(x)
 print(y)
 
-# axis=y，的意思是y轴每个元素的其他维度求和平均
+
 x = tf.constant([[1.0, 2.0], [3.0, 4.0]])
 y = tf.reduce_mean(x, axis=1)
 print(y)

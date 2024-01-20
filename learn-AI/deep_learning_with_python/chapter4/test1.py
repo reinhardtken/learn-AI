@@ -1,3 +1,4 @@
+# coding: utf-8
 # 影评分类：二分类问题示例
 
 import tensorflow as tf
@@ -8,6 +9,13 @@ from tensorflow import keras
 from tensorflow.keras import layers
 
 from tensorflow.keras.datasets import imdb
+
+import sys, os
+current_dir = os.path.dirname(os.path.abspath(__file__))
+relative_path = r'..\\'
+abs_path = os.path.join(current_dir, relative_path)
+sys.path.append(abs_path)
+from common.function import vectorize_sequences
 
 # 参数num_words=10000的意思是仅保留训练数据中前10 000个最常出现的单词。低频词将被舍弃。
 # 这样一来，我们得到的向量数据不会太大，便于处理。如果没有这个限制，那么我们需要处理训练数据中的88 585个单词。
@@ -29,13 +37,7 @@ decoded_review = " ".join(
     [reverse_word_index.get(i - 3, "?") for i in train_data[0]])
 print(decoded_review)
 
-# 因为总共的评论词是10000个，所以每个评论的词汇总量也不会超过10000，就用10000的array，1表示某个词汇存在，0表示不存在处理
-def vectorize_sequences(sequences, dimension=10000):
-    results = np.zeros((len(sequences), dimension))
-    for i, sequence in enumerate(sequences):
-        for j in sequence:
-            results[i, j] = 1.
-    return results
+
 
 x_train = vectorize_sequences(train_data)
 x_test = vectorize_sequences(test_data)
